@@ -49,11 +49,13 @@ Stepper Motors:
 
 ```js
 // get a motor-hat instance with the following initialized:
+// * a non-default I2C address for the motor hat (default is 0x6F)
 // * a stepper with winding one on 'M1' and winding two on 'M2' ports
 // * a dc motor on port 'M4'
 // * a servo on channel 0
 // * a servo on channel 14
 let spec = {
+    address: 0x60,
     steppers: [{ W1: 'M1', W2: 'M2' }],
     dcs: ['M4'],
     servos: [0,14]
@@ -108,14 +110,19 @@ motorHat.servos[0].moveTo(100);
 
 
 // Start dc motor forward (by default at 100% speed)
-motorHat.dcs[0].run('fwd');
+motorHat.dcs[0].runSync('fwd');
 // Set DC motor speed to 50%
-motorHat.dcs[0].setSpeed(50);
+motorHat.dcs[0].setSpeedSync(50);
 // reverse the dc motor to back direction
-motorHat.dcs[0].run('back');
+motorHat.dcs[0].runSync('back');
 // stop the dc motor
-motorHat.dcs[0].stop();
+motorHat.dcs[0].stopSync();
 ```
+
+## As seen in
+Some of our friends made cool stuff using motor-hat. Drop us a PR to add your project to this list.
+
+ - [@joeljameswatson]( https://github.com/joeljameswatson ) : Laser Mandala, a really cool remote controlled lights show ([joeljameswatson/laser-mandala]( https://github.com/joeljameswatson/laser-mandala ))
 ## License
 
 MIT © [J. Cane](https://www.github.com/jcane86)
